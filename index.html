@@ -19,6 +19,7 @@
             --color-border: #e5e5e5;
             --color-highlight: #fef3c7;
             --color-news-date: #059669;
+            --color-spotlight: #dc2626;
             --font-serif: 'Crimson Pro', Georgia, serif;
             --font-sans: 'Inter', -apple-system, sans-serif;
             --font-mono: 'IBM Plex Mono', monospace;
@@ -314,6 +315,13 @@
             color: var(--color-accent);
         }
 
+        .news-table .highlight {
+            background: #fef3c7;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
         /* Publications */
         .pub-note {
             font-size: 0.85rem;
@@ -326,6 +334,20 @@
             background: #f3f4f6;
             padding: 0.1rem 0.3rem;
             border-radius: 2px;
+        }
+
+        .pub-year-header {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed var(--color-border);
+        }
+
+        .pub-year-header:first-of-type {
+            margin-top: 0;
         }
 
         .publication-item {
@@ -342,6 +364,17 @@
             transform: translateY(-2px);
         }
 
+        .publication-item.spotlight {
+            border-left: 4px solid var(--color-spotlight);
+        }
+
+        .pub-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
         .pub-venue {
             display: inline-block;
             font-family: var(--font-mono);
@@ -351,11 +384,21 @@
             color: white;
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
-            margin-bottom: 0.8rem;
         }
 
         .pub-venue.under-review {
             background: #f59e0b;
+        }
+
+        .pub-award {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--color-spotlight);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
         }
 
         .pub-title {
@@ -435,72 +478,77 @@
             word-break: break-all;
         }
 
-        /* Projects */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+        /* Experience */
+        .experience-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .project-card {
-            background: var(--color-card);
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
+        .experience-item:last-child {
+            border-bottom: none;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--color-accent), #8b5cf6);
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
-        .project-card:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transform: translateY(-2px);
-        }
-
-        .project-card h3 {
+        .experience-header h3 {
             font-family: var(--font-serif);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .experience-header .date {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .experience-role {
+            font-size: 0.95rem;
+            color: var(--color-accent);
             margin-bottom: 0.5rem;
         }
 
-        .project-card h3 a {
-            color: var(--color-text);
-        }
-
-        .project-card h3 a:hover {
-            color: var(--color-accent);
-            text-decoration: none;
-        }
-
-        .project-card p {
+        .experience-desc {
             font-size: 0.9rem;
             color: var(--color-text-secondary);
-            margin-bottom: 1rem;
         }
 
-        .project-tags {
+        /* Awards */
+        .awards-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .award-item {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
         }
 
-        .project-tags span {
+        .award-item.highlight {
+            border-left: 3px solid var(--color-spotlight);
+            background: #fef2f2;
+        }
+
+        .award-name {
+            font-size: 0.95rem;
+        }
+
+        .award-date {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
-            background: #f3f4f6;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            color: var(--color-text-secondary);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
         }
 
         /* Services */
@@ -584,6 +632,11 @@
                 width: 80px;
                 font-size: 0.75rem;
             }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
         @media (max-width: 480px) {
@@ -599,10 +652,6 @@
 
             .container {
                 padding: 2rem 1rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -628,7 +677,8 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#publications">Publications</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#awards">Awards</a></li>
             </ul>
         </div>
     </nav>
@@ -641,7 +691,7 @@
                 S
             </div>
             <div class="hero-content">
-                <h1>Shuqing Shi <span class="chinese-name">石舒青</span></h1>
+                <h1>Shuqing Shi <span class="chinese-name">史述青</span></h1>
                 
                 <div class="contact-line">
                     Email: shuqing.shi<code>[at]</code>kcl<code>[dot]</code>ac<code>[dot]</code>uk
@@ -664,10 +714,10 @@
 
                 <div class="bio">
                     <p>
-                        I am a Ph.D. student at the <a href="https://coopai.kcl.ac.uk/" target="_blank">Cooperative AI Lab</a>, <a href="https://www.kcl.ac.uk/informatics" target="_blank">King's College London</a>, supervised by <a href="https://yalidu.github.io/" target="_blank">Dr. Yali Du</a>. My research focuses on building AI agents that can effectively <em>coordinate and cooperate</em> in complex multi-agent environments.
+                        I am a Ph.D. student in Computer Science at <a href="https://www.kcl.ac.uk/" target="_blank">King's College London</a>, supervised by <a href="https://yalidu.github.io/" target="_blank">Dr. Yali Du</a>. Previously, I received my M.Sc. and B.Eng. from the <a href="https://www.uestc.edu.cn/" target="_blank">University of Electronic Science and Technology of China (UESTC)</a>.
                     </p>
                     <p>
-                        I'm particularly interested in the fundamental question: <strong>How can agents learn to cooperate with partners they've never seen before?</strong>
+                        My research focuses on building AI agents that can effectively <em>coordinate and cooperate</em> in complex multi-agent environments. I'm particularly interested in the fundamental question: <strong>How can heterogeneous agents learn to cooperate in a complex environment in an efficient and scalable way?</strong>
                     </p>
                 </div>
 
@@ -675,9 +725,8 @@
                     <h3>Research Interests</h3>
                     <ul>
                         <li><strong>Multi-Agent Reinforcement Learning</strong>: Developing algorithms for coordination and cooperation in complex environments.</li>
-                        <li><strong>Zero-Shot Coordination</strong>: Enabling agents to cooperate with novel partners without prior interaction.</li>
-                        <li><strong>Coalition Formation</strong>: Understanding when and how agents should form alliances using game-theoretic principles.</li>
-                        <li><strong>Causal Inference in MARL</strong>: Applying counterfactual reasoning for better credit assignment.</li>
+                        <li><strong>Cooperative Game Theory</strong>: Understanding coalition formation and value distribution among agents.</li>
+                        <li><strong>Causal Inference</strong>: Applying counterfactual reasoning for better credit assignment and generalization.</li>
                     </ul>
                 </div>
             </div>
@@ -689,149 +738,279 @@
             <table class="news-table">
                 <tr>
                     <td class="date">Jan 2026</td>
-                    <td class="content">Submitted two papers to <span class="venue">ICML 2026</span> on multi-agent cooperation! 🤞</td>
+                    <td class="content">Two papers accepted to <span class="venue">ICLR 2026</span>: BRIDGE and SocialJax!</td>
                 </tr>
                 <tr>
-                    <td class="date">Dec 2025</td>
-                    <td class="content">Presented SCHEMER at the Multi-Agent Learning Workshop.</td>
+                    <td class="date">Oct 2025</td>
+                    <td class="content">Recognized as <span class="highlight">NeurIPS 2025 Top Reviewer</span> (Top 8–10%)! 🎉</td>
                 </tr>
                 <tr>
                     <td class="date">Sep 2025</td>
-                    <td class="content">Started my second year of PhD at King's College London.</td>
+                    <td class="content">Our paper on causal policy learning received <span class="highlight">NeurIPS 2025 Spotlight</span> (Top 3%)! 🌟</td>
                 </tr>
                 <tr>
-                    <td class="date">Jun 2025</td>
-                    <td class="content">Released <a href="#">SocialJax</a>, a JAX-based benchmark for multi-agent social interactions.</td>
+                    <td class="date">Sep 2025</td>
+                    <td class="content">Paper on LLM-based agents accepted to <span class="venue">NeurIPS 2025</span> Datasets & Benchmarks Track.</td>
+                </tr>
+                <tr>
+                    <td class="date">Sep 2024</td>
+                    <td class="content">Paper on stochastic cooperative games accepted to <span class="venue">NeurIPS 2024</span>.</td>
                 </tr>
             </table>
         </section>
 
         <!-- Publications Section -->
         <section id="publications">
-            <h2><span class="emoji">📚</span> Selected Publications</h2>
+            <h2><span class="emoji">📚</span> Publications</h2>
             
             <p class="pub-note">
-                <code>*</code> Equal contribution &nbsp;&nbsp; <code>✉</code> Corresponding author
+                <code>*</code> Equal contribution
             </p>
 
-            <!-- Publication 1 -->
+            <div class="pub-year-header">Preprints</div>
+
             <div class="publication-item">
-                <span class="pub-venue under-review">ICML'26 Under Review</span>
-                <h3 class="pub-title">SCHEMER: Skill-Structured Hierarchical Memory for Zero-Shot Embodied Cooperation</h3>
+                <div class="pub-badges">
+                    <span class="pub-venue under-review">Under Review</span>
+                </div>
+                <h3 class="pub-title">Resolving Complex Social Dilemmas by Aligning Preferences with Counterfactual Regret</h3>
                 <p class="pub-authors">
-                    <span class="me">Shuqing Shi</span>, [Co-author 1], [Co-author 2], and Yali Du
+                    <span class="me">Shuqing Shi</span>, Yudi Zhang, Joel Z. Leibo, Yali Du
                 </p>
-                <p class="pub-meta">In Forty-Third International Conference on Machine Learning (ICML), 2026</p>
                 <div class="pub-links">
                     <button onclick="toggleAbstract(this)">Abstract</button>
                     <a href="#">arXiv</a>
-                    <a href="#">Code</a>
-                    <button onclick="toggleBibtex(this)">BibTeX</button>
                 </div>
                 <div class="pub-abstract">
-                    How can an embodied agent cooperate with a partner it has never encountered before? We introduce SCHEMER (Skill-struCtured Hierarchical mEmory for zero-shot cooperation), a novel framework that enables zero-shot coordination in embodied multi-agent tasks. Our key insight is to separate abstract skills from their contextualized instances in a hierarchical memory structure. During execution, agents retrieve and adapt relevant skills based on the current context, enabling flexible coordination with novel partners. We evaluate SCHEMER on a suite of cooperative embodied tasks and demonstrate significant improvements over existing methods in zero-shot coordination scenarios.
+                    We propose a novel approach to resolve complex social dilemmas by aligning agent preferences using counterfactual regret minimization. Our method enables agents to learn cooperative strategies in mixed-motive scenarios where traditional approaches fail.
                 </div>
-                <div class="pub-bibtex">@inproceedings{shi2026schemer,
-  title={SCHEMER: Skill-Structured Hierarchical Memory for Zero-Shot Embodied Cooperation},
-  author={Shi, Shuqing and ... and Du, Yali},
-  booktitle={Forty-Third International Conference on Machine Learning},
-  year={2026}
-}</div>
             </div>
 
-            <!-- Publication 2 -->
+            <div class="pub-year-header">2026</div>
+
             <div class="publication-item">
-                <span class="pub-venue under-review">ICML'26 Under Review</span>
-                <h3 class="pub-title">BRIDGE: Bi-level Reinforcement Learning for Coalition Formation in Multi-Agent Systems</h3>
+                <div class="pub-badges">
+                    <span class="pub-venue">ICLR 2026</span>
+                </div>
+                <h3 class="pub-title">BRIDGE: Bi-level Reinforcement Learning for Dynamic Group Structure in Coalition Formation Games</h3>
                 <p class="pub-authors">
-                    <span class="me">Shuqing Shi</span>, [Co-author 1], [Co-author 2], and Yali Du
+                    <span class="me">Shuqing Shi</span>, Nam Phuong Tran, Hao Liang, Debmalya Mandal, Long Tran-Thanh, Yali Du
                 </p>
-                <p class="pub-meta">In Forty-Third International Conference on Machine Learning (ICML), 2026</p>
+                <p class="pub-meta">In The Thirteenth International Conference on Learning Representations (ICLR), 2026</p>
                 <div class="pub-links">
                     <button onclick="toggleAbstract(this)">Abstract</button>
-                    <a href="#">arXiv</a>
+                    <a href="#">Paper</a>
                     <a href="#">Code</a>
                     <button onclick="toggleBibtex(this)">BibTeX</button>
                 </div>
                 <div class="pub-abstract">
-                    Coalition formation is fundamental to multi-agent cooperation, yet existing approaches typically treat it as a static problem. We propose BRIDGE, a bi-level reinforcement learning framework that jointly learns when to form coalitions (high-level) and how to coordinate within them (low-level). Our approach leverages cooperative game theory to guide coalition value estimation while remaining scalable through learned representations. Experiments on mixed cooperative-competitive environments demonstrate that BRIDGE enables emergent coalition dynamics that outperform both fixed coalition structures and independent learning baselines.
+                    Coalition formation is fundamental to multi-agent cooperation, yet existing approaches typically treat it as a static problem. We propose BRIDGE, a bi-level reinforcement learning framework that jointly learns when to form coalitions (high-level) and how to coordinate within them (low-level).
                 </div>
                 <div class="pub-bibtex">@inproceedings{shi2026bridge,
-  title={BRIDGE: Bi-level Reinforcement Learning for Coalition Formation in Multi-Agent Systems},
-  author={Shi, Shuqing and ... and Du, Yali},
-  booktitle={Forty-Third International Conference on Machine Learning},
+  title={BRIDGE: Bi-level Reinforcement Learning for Dynamic Group Structure in Coalition Formation Games},
+  author={Shi, Shuqing and Tran, Nam Phuong and Liang, Hao and Mandal, Debmalya and Tran-Thanh, Long and Du, Yali},
+  booktitle={The Thirteenth International Conference on Learning Representations},
   year={2026}
 }</div>
             </div>
 
-            <!-- Publication 3 -->
             <div class="publication-item">
-                <span class="pub-venue">Workshop 2025</span>
-                <h3 class="pub-title">Counterfactual Credit Assignment in Sequential Social Dilemmas</h3>
+                <div class="pub-badges">
+                    <span class="pub-venue">ICLR 2026</span>
+                </div>
+                <h3 class="pub-title">SocialJax: An Evaluation Suite for Multi-agent Reinforcement Learning in Sequential Social Dilemmas</h3>
                 <p class="pub-authors">
-                    <span class="me">Shuqing Shi</span>, [Co-authors]
+                    Zihao Guo*, <span class="me">Shuqing Shi*</span>, Richard Willis, Tristan Tomilin, Joel Z. Leibo, Yali Du
                 </p>
-                <p class="pub-meta">In NeurIPS Workshop on Multi-Agent Learning, 2025</p>
+                <p class="pub-meta">In The Thirteenth International Conference on Learning Representations (ICLR), 2026</p>
                 <div class="pub-links">
                     <button onclick="toggleAbstract(this)">Abstract</button>
-                    <a href="#">PDF</a>
+                    <a href="#">Paper</a>
                     <a href="#">Code</a>
                     <button onclick="toggleBibtex(this)">BibTeX</button>
                 </div>
                 <div class="pub-abstract">
-                    Credit assignment in multi-agent systems remains challenging, particularly in social dilemmas where individual and collective interests may conflict. We propose a counterfactual approach that estimates each agent's contribution by reasoning about what would have happened under alternative actions. Our method improves cooperation emergence in sequential social dilemmas while providing interpretable credit assignment.
+                    We present SocialJax, a JAX-based evaluation suite for multi-agent reinforcement learning in sequential social dilemmas. Built for speed, SocialJax runs thousands of episodes in seconds on a single GPU while providing standard implementations of classic social dilemmas.
                 </div>
-                <div class="pub-bibtex">@inproceedings{shi2025counterfactual,
-  title={Counterfactual Credit Assignment in Sequential Social Dilemmas},
-  author={Shi, Shuqing and ...},
-  booktitle={NeurIPS Workshop on Multi-Agent Learning},
+                <div class="pub-bibtex">@inproceedings{guo2026socialjax,
+  title={SocialJax: An Evaluation Suite for Multi-agent Reinforcement Learning in Sequential Social Dilemmas},
+  author={Guo, Zihao and Shi, Shuqing and Willis, Richard and Tomilin, Tristan and Leibo, Joel Z. and Du, Yali},
+  booktitle={The Thirteenth International Conference on Learning Representations},
+  year={2026}
+}</div>
+            </div>
+
+            <div class="pub-year-header">2025</div>
+
+            <div class="publication-item spotlight">
+                <div class="pub-badges">
+                    <span class="pub-venue">NeurIPS 2025</span>
+                    <span class="pub-award">🌟 Spotlight (Top 3%)</span>
+                </div>
+                <h3 class="pub-title">Causality Meets Locality: Provably Generalizable and Scalable Policy Learning for Networked Systems</h3>
+                <p class="pub-authors">
+                    Hao Liang*, <span class="me">Shuqing Shi*</span>, Yudi Zhang, Biwei Huang, Yali Du
+                </p>
+                <p class="pub-meta">In The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS), 2025</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">Paper</a>
+                    <a href="#">Code</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    We propose a principled approach that combines causal inference with locality principles for provably generalizable and scalable policy learning in networked systems. Our method achieves state-of-the-art performance while providing theoretical guarantees.
+                </div>
+                <div class="pub-bibtex">@inproceedings{liang2025causality,
+  title={Causality Meets Locality: Provably Generalizable and Scalable Policy Learning for Networked Systems},
+  author={Liang, Hao and Shi, Shuqing and Zhang, Yudi and Huang, Biwei and Du, Yali},
+  booktitle={The Thirty-Ninth Annual Conference on Neural Information Processing Systems},
   year={2025}
 }</div>
             </div>
+
+            <div class="publication-item">
+                <div class="pub-badges">
+                    <span class="pub-venue">NeurIPS D&B 2025</span>
+                </div>
+                <h3 class="pub-title">Evaluating Generalization Capabilities of LLM-Based Agents in Mixed-Motive Scenarios Using Concordia</h3>
+                <p class="pub-authors">
+                    Chandler Smith et al., <span class="me">Shuqing Shi</span> et al.
+                </p>
+                <p class="pub-meta">In NeurIPS Datasets and Benchmarks Track, 2025</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">Paper</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    We evaluate the generalization capabilities of LLM-based agents in mixed-motive scenarios using the Concordia framework, providing insights into how large language models perform in multi-agent social interactions.
+                </div>
+                <div class="pub-bibtex">@inproceedings{smith2025evaluating,
+  title={Evaluating Generalization Capabilities of LLM-Based Agents in Mixed-Motive Scenarios Using Concordia},
+  author={Smith, Chandler and others},
+  booktitle={NeurIPS Datasets and Benchmarks Track},
+  year={2025}
+}</div>
+            </div>
+
+            <div class="pub-year-header">2024</div>
+
+            <div class="publication-item">
+                <div class="pub-badges">
+                    <span class="pub-venue">NeurIPS 2024</span>
+                </div>
+                <h3 class="pub-title">Learning the Expected Core of Strictly Convex Stochastic Cooperative Games</h3>
+                <p class="pub-authors">
+                    Nam P. Tran, <span class="me">Shuqing Shi</span>, Debmalya Mandal, Yali Du, Long Tran-Thanh
+                </p>
+                <p class="pub-meta">In The Thirty-Eighth Annual Conference on Neural Information Processing Systems (NeurIPS), 2024</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">Paper</a>
+                    <a href="#">Code</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    We study the problem of learning the expected core in strictly convex stochastic cooperative games, providing theoretical analysis and practical algorithms for stable coalition value distribution under uncertainty.
+                </div>
+                <div class="pub-bibtex">@inproceedings{tran2024learning,
+  title={Learning the Expected Core of Strictly Convex Stochastic Cooperative Games},
+  author={Tran, Nam P. and Shi, Shuqing and Mandal, Debmalya and Du, Yali and Tran-Thanh, Long},
+  booktitle={The Thirty-Eighth Annual Conference on Neural Information Processing Systems},
+  year={2024}
+}</div>
+            </div>
+
+            <div class="pub-year-header">2022</div>
+
+            <div class="publication-item">
+                <div class="pub-badges">
+                    <span class="pub-venue">IJCNN 2022</span>
+                </div>
+                <h3 class="pub-title">Solving Poker Games Efficiently: Adaptive Memory Based Deep Counterfactual Regret Minimization</h3>
+                <p class="pub-authors">
+                    <span class="me">Shuqing Shi</span>, Xiaobin Wang, Dong Hao, Zhiyou Yang, Hong Qu
+                </p>
+                <p class="pub-meta">In International Joint Conference on Neural Networks (IJCNN), 2022</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">Paper</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    We propose an adaptive memory-based approach to deep counterfactual regret minimization for solving large-scale poker games more efficiently, reducing memory requirements while maintaining solution quality.
+                </div>
+                <div class="pub-bibtex">@inproceedings{shi2022solving,
+  title={Solving Poker Games Efficiently: Adaptive Memory Based Deep Counterfactual Regret Minimization},
+  author={Shi, Shuqing and Wang, Xiaobin and Hao, Dong and Yang, Zhiyou and Qu, Hong},
+  booktitle={International Joint Conference on Neural Networks},
+  year={2022}
+}</div>
+            </div>
+
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2><span class="emoji">🔬</span> Research Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3><a href="#">SCHEMER</a></h3>
-                    <p>Hierarchical memory system separating abstract skills from contextualized instances for zero-shot coordination in embodied tasks.</p>
-                    <div class="project-tags">
-                        <span>Zero-Shot Cooperation</span>
-                        <span>Memory</span>
-                        <span>Embodied AI</span>
-                    </div>
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2><span class="emoji">💼</span> Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>The Chinese University of Hong Kong, Shenzhen</h3>
+                    <span class="date">Feb 2023 – Jul 2023</span>
                 </div>
+                <div class="experience-role">Research Assistant · Supervised by Prof. Guiliang Liu</div>
+                <p class="experience-desc">
+                    Worked on counterfactual policy evaluation under out-of-distribution (OOD) shifts. By intervening on the action-value function in factorized spaces, achieved more accurate estimation on OOD samples.
+                </p>
+            </div>
 
-                <div class="project-card">
-                    <h3><a href="#">BRIDGE</a></h3>
-                    <p>Bi-level RL framework learning when to form coalitions and how to coordinate within them.</p>
-                    <div class="project-tags">
-                        <span>Coalition Formation</span>
-                        <span>Bi-level RL</span>
-                        <span>Game Theory</span>
-                    </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</h3>
+                    <span class="date">Dec 2022 – Feb 2023</span>
                 </div>
+                <div class="experience-role">Visiting Student · Supervised by Prof. Zhiqiang Xu</div>
+                <p class="experience-desc">
+                    Studied an online RL setting with reward-weighted methods to reweight policy distributions, enabling efficient discovery of globally optimal policy distributions.
+                </p>
+            </div>
+        </section>
 
-                <div class="project-card">
-                    <h3><a href="#">SocialJax</a></h3>
-                    <p>High-performance JAX benchmark for multi-agent social interactions. Thousands of episodes in seconds.</p>
-                    <div class="project-tags">
-                        <span>Benchmarking</span>
-                        <span>JAX</span>
-                        <span>Social Dilemmas</span>
-                    </div>
+        <!-- Awards Section -->
+        <section id="awards">
+            <h2><span class="emoji">🏆</span> Awards</h2>
+            <div class="awards-list">
+                <div class="award-item highlight">
+                    <span class="award-name">🌟 NeurIPS 2025 Spotlight (Top 3%)</span>
+                    <span class="award-date">Sep 2025</span>
+                </div>
+                <div class="award-item highlight">
+                    <span class="award-name">🎯 NeurIPS 2025 Top Reviewer (Top 8–10%)</span>
+                    <span class="award-date">Oct 2025</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">Outstanding Student Scholarship (UESTC)</span>
+                    <span class="award-date">Oct 2020</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">Outstanding Student Scholarship (UESTC)</span>
+                    <span class="award-date">Oct 2018</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">Outstanding Student Scholarship (UESTC)</span>
+                    <span class="award-date">Oct 2017</span>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
         <section id="services">
-            <h2><span class="emoji">🎓</span> Professional Services</h2>
+            <h2><span class="emoji">🎓</span> Academic Services</h2>
             <ul class="services-list">
-                <li><strong>Conference Reviewer</strong>: ICML 2025/26, NeurIPS 2025, ICLR 2025/26</li>
-                <li><strong>Workshop Reviewer</strong>: NeurIPS Multi-Agent Learning Workshop 2025</li>
+                <li><strong>Reviewer</strong>: NeurIPS 2025, ICLR 2026</li>
+                <li><strong>Program Committee</strong>: 7th Distributed AI Conference (DAI 2025)</li>
             </ul>
         </section>
     </div>
