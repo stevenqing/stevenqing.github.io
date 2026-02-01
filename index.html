@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuqing Shi | PhD Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #fafafa;
+            --color-card: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #555;
+            --color-text-muted: #888;
+            --color-accent: #2563eb;
+            --color-accent-hover: #1d4ed8;
+            --color-border: #e5e5e5;
+            --color-highlight: #fef3c7;
+            --color-news-date: #059669;
+            --font-serif: 'Crimson Pro', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-bg);
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--color-accent-hover);
+            text-decoration: underline;
+        }
+
+        /* Network Background */
+        #network-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        nav .logo:hover {
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        nav ul a:hover {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .profile-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-serif);
+            font-size: 5rem;
+            font-weight: 600;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--color-text);
+        }
+
+        .hero-content h1 .chinese-name {
+            font-weight: 400;
+            font-size: 1.8rem;
+            color: var(--color-text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .contact-line {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-line code {
+            background: #f3f4f6;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: #f3f4f6;
+            color: var(--color-text-secondary);
+            transition: all 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: var(--color-accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .social-icons svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .bio {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .bio p {
+            margin-bottom: 1rem;
+        }
+
+        .research-interests {
+            margin-top: 1.5rem;
+        }
+
+        .research-interests h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.8rem;
+        }
+
+        .research-interests ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .research-interests li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .research-interests li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        .research-interests li strong {
+            color: var(--color-text);
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section h2 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        section h2 .emoji {
+            font-size: 1.3rem;
+        }
+
+        /* News Section */
+        .news-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .news-table tr {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .news-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .news-table td {
+            padding: 0.8rem 0;
+            vertical-align: top;
+        }
+
+        .news-table .date {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-news-date);
+            font-weight: 500;
+            width: 100px;
+            white-space: nowrap;
+        }
+
+        .news-table .content {
+            font-size: 0.95rem;
+        }
+
+        .news-table .venue {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* Publications */
+        .pub-note {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .pub-note code {
+            background: #f3f4f6;
+            padding: 0.1rem 0.3rem;
+            border-radius: 2px;
+        }
+
+        .publication-item {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .publication-item:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .pub-venue {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+
+        .pub-venue.under-review {
+            background: #f59e0b;
+        }
+
+        .pub-title {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .pub-authors {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-authors .me {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .pub-meta {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+        }
+
+        .pub-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pub-links button,
+        .pub-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            border: 1px solid var(--color-border);
+            background: white;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .pub-links button:hover,
+        .pub-links a:hover {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .pub-abstract,
+        .pub-bibtex {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .pub-abstract.show,
+        .pub-bibtex.show {
+            display: block;
+        }
+
+        .pub-bibtex {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), #8b5cf6);
+        }
+
+        .project-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .project-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card h3 a {
+            color: var(--color-text);
+        }
+
+        .project-card h3 a:hover {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project-tags span {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Services */
+        .services-list {
+            list-style: none;
+        }
+
+        .services-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .services-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer .quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-photo {
+                margin: 0 auto;
+                width: 180px;
+                height: 180px;
+                font-size: 4rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content h1 .chinese-name {
+                display: block;
+                margin-left: 0;
+                margin-top: 0.3rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .bio {
+                text-align: left;
+            }
+
+            .research-interests ul {
+                text-align: left;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .news-table .date {
+                width: 80px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .nav-inner {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print */
+        @media print {
+            nav, #network-bg {
+                display: none;
+            }
+
+            .pub-links button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="network-bg"></canvas>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">Shuqing Shi</a>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="profile-photo">
+                <!-- Replace with: <img src="photo.jpg" alt="Shuqing Shi"> -->
+                S
+            </div>
+            <div class="hero-content">
+                <h1>Shuqing Shi <span class="chinese-name">石舒青</span></h1>
+                
+                <div class="contact-line">
+                    Email: shuqing.shi<code>[at]</code>kcl<code>[dot]</code>ac<code>[dot]</code>uk
+                </div>
+
+                <div class="social-icons">
+                    <a href="https://github.com/yourusername" target="_blank" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=XXXXX" target="_blank" title="Google Scholar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" title="Twitter/X">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="cv.pdf" target="_blank" title="CV">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    </a>
+                </div>
+
+                <div class="bio">
+                    <p>
+                        I am a Ph.D. student at the <a href="https://coopai.kcl.ac.uk/" target="_blank">Cooperative AI Lab</a>, <a href="https://www.kcl.ac.uk/informatics" target="_blank">King's College London</a>, supervised by <a href="https://yalidu.github.io/" target="_blank">Dr. Yali Du</a>. My research focuses on building AI agents that can effectively <em>coordinate and cooperate</em> in complex multi-agent environments.
+                    </p>
+                    <p>
+                        I'm particularly interested in the fundamental question: <strong>How can agents learn to cooperate with partners they've never seen before?</strong>
+                    </p>
+                </div>
+
+                <div class="research-interests">
+                    <h3>Research Interests</h3>
+                    <ul>
+                        <li><strong>Multi-Agent Reinforcement Learning</strong>: Developing algorithms for coordination and cooperation in complex environments.</li>
+                        <li><strong>Zero-Shot Coordination</strong>: Enabling agents to cooperate with novel partners without prior interaction.</li>
+                        <li><strong>Coalition Formation</strong>: Understanding when and how agents should form alliances using game-theoretic principles.</li>
+                        <li><strong>Causal Inference in MARL</strong>: Applying counterfactual reasoning for better credit assignment.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Section -->
+        <section id="news">
+            <h2><span class="emoji">📰</span> News</h2>
+            <table class="news-table">
+                <tr>
+                    <td class="date">Jan 2026</td>
+                    <td class="content">Submitted two papers to <span class="venue">ICML 2026</span> on multi-agent cooperation! 🤞</td>
+                </tr>
+                <tr>
+                    <td class="date">Dec 2025</td>
+                    <td class="content">Presented SCHEMER at the Multi-Agent Learning Workshop.</td>
+                </tr>
+                <tr>
+                    <td class="date">Sep 2025</td>
+                    <td class="content">Started my second year of PhD at King's College London.</td>
+                </tr>
+                <tr>
+                    <td class="date">Jun 2025</td>
+                    <td class="content">Released <a href="#">SocialJax</a>, a JAX-based benchmark for multi-agent social interactions.</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2><span class="emoji">📚</span> Selected Publications</h2>
+            
+            <p class="pub-note">
+                <code>*</code> Equal contribution &nbsp;&nbsp; <code>✉</code> Corresponding author
+            </p>
+
+            <!-- Publication 1 -->
+            <div class="publication-item">
+                <span class="pub-venue under-review">ICML'26 Under Review</span>
+                <h3 class="pub-title">SCHEMER: Skill-Structured Hierarchical Memory for Zero-Shot Embodied Cooperation</h3>
+                <p class="pub-authors">
+                    <span class="me">Shuqing Shi</span>, [Co-author 1], [Co-author 2], and Yali Du
+                </p>
+                <p class="pub-meta">In Forty-Third International Conference on Machine Learning (ICML), 2026</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">arXiv</a>
+                    <a href="#">Code</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    How can an embodied agent cooperate with a partner it has never encountered before? We introduce SCHEMER (Skill-struCtured Hierarchical mEmory for zero-shot cooperation), a novel framework that enables zero-shot coordination in embodied multi-agent tasks. Our key insight is to separate abstract skills from their contextualized instances in a hierarchical memory structure. During execution, agents retrieve and adapt relevant skills based on the current context, enabling flexible coordination with novel partners. We evaluate SCHEMER on a suite of cooperative embodied tasks and demonstrate significant improvements over existing methods in zero-shot coordination scenarios.
+                </div>
+                <div class="pub-bibtex">@inproceedings{shi2026schemer,
+  title={SCHEMER: Skill-Structured Hierarchical Memory for Zero-Shot Embodied Cooperation},
+  author={Shi, Shuqing and ... and Du, Yali},
+  booktitle={Forty-Third International Conference on Machine Learning},
+  year={2026}
+}</div>
+            </div>
+
+            <!-- Publication 2 -->
+            <div class="publication-item">
+                <span class="pub-venue under-review">ICML'26 Under Review</span>
+                <h3 class="pub-title">BRIDGE: Bi-level Reinforcement Learning for Coalition Formation in Multi-Agent Systems</h3>
+                <p class="pub-authors">
+                    <span class="me">Shuqing Shi</span>, [Co-author 1], [Co-author 2], and Yali Du
+                </p>
+                <p class="pub-meta">In Forty-Third International Conference on Machine Learning (ICML), 2026</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">arXiv</a>
+                    <a href="#">Code</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    Coalition formation is fundamental to multi-agent cooperation, yet existing approaches typically treat it as a static problem. We propose BRIDGE, a bi-level reinforcement learning framework that jointly learns when to form coalitions (high-level) and how to coordinate within them (low-level). Our approach leverages cooperative game theory to guide coalition value estimation while remaining scalable through learned representations. Experiments on mixed cooperative-competitive environments demonstrate that BRIDGE enables emergent coalition dynamics that outperform both fixed coalition structures and independent learning baselines.
+                </div>
+                <div class="pub-bibtex">@inproceedings{shi2026bridge,
+  title={BRIDGE: Bi-level Reinforcement Learning for Coalition Formation in Multi-Agent Systems},
+  author={Shi, Shuqing and ... and Du, Yali},
+  booktitle={Forty-Third International Conference on Machine Learning},
+  year={2026}
+}</div>
+            </div>
+
+            <!-- Publication 3 -->
+            <div class="publication-item">
+                <span class="pub-venue">Workshop 2025</span>
+                <h3 class="pub-title">Counterfactual Credit Assignment in Sequential Social Dilemmas</h3>
+                <p class="pub-authors">
+                    <span class="me">Shuqing Shi</span>, [Co-authors]
+                </p>
+                <p class="pub-meta">In NeurIPS Workshop on Multi-Agent Learning, 2025</p>
+                <div class="pub-links">
+                    <button onclick="toggleAbstract(this)">Abstract</button>
+                    <a href="#">PDF</a>
+                    <a href="#">Code</a>
+                    <button onclick="toggleBibtex(this)">BibTeX</button>
+                </div>
+                <div class="pub-abstract">
+                    Credit assignment in multi-agent systems remains challenging, particularly in social dilemmas where individual and collective interests may conflict. We propose a counterfactual approach that estimates each agent's contribution by reasoning about what would have happened under alternative actions. Our method improves cooperation emergence in sequential social dilemmas while providing interpretable credit assignment.
+                </div>
+                <div class="pub-bibtex">@inproceedings{shi2025counterfactual,
+  title={Counterfactual Credit Assignment in Sequential Social Dilemmas},
+  author={Shi, Shuqing and ...},
+  booktitle={NeurIPS Workshop on Multi-Agent Learning},
+  year={2025}
+}</div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2><span class="emoji">🔬</span> Research Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3><a href="#">SCHEMER</a></h3>
+                    <p>Hierarchical memory system separating abstract skills from contextualized instances for zero-shot coordination in embodied tasks.</p>
+                    <div class="project-tags">
+                        <span>Zero-Shot Cooperation</span>
+                        <span>Memory</span>
+                        <span>Embodied AI</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="#">BRIDGE</a></h3>
+                    <p>Bi-level RL framework learning when to form coalitions and how to coordinate within them.</p>
+                    <div class="project-tags">
+                        <span>Coalition Formation</span>
+                        <span>Bi-level RL</span>
+                        <span>Game Theory</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="#">SocialJax</a></h3>
+                    <p>High-performance JAX benchmark for multi-agent social interactions. Thousands of episodes in seconds.</p>
+                    <div class="project-tags">
+                        <span>Benchmarking</span>
+                        <span>JAX</span>
+                        <span>Social Dilemmas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2><span class="emoji">🎓</span> Professional Services</h2>
+            <ul class="services-list">
+                <li><strong>Conference Reviewer</strong>: ICML 2025/26, NeurIPS 2025, ICLR 2025/26</li>
+                <li><strong>Workshop Reviewer</strong>: NeurIPS Multi-Agent Learning Workshop 2025</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p class="quote">"The whole is greater than the sum of its parts."</p>
+        <p>© 2025 Shuqing Shi · Last updated: January 2026</p>
+    </footer>
+
+    <script>
+        // Toggle Abstract
+        function toggleAbstract(btn) {
+            const item = btn.closest('.publication-item');
+            const abstract = item.querySelector('.pub-abstract');
+            const bibtex = item.querySelector('.pub-bibtex');
+            
+            if (bibtex) bibtex.classList.remove('show');
+            abstract.classList.toggle('show');
+            btn.textContent = abstract.classList.contains('show') ? 'Hide Abstract' : 'Abstract';
+        }
+
+        // Toggle BibTeX
+        function toggleBibtex(btn) {
+            const item = btn.closest('.publication-item');
+            const bibtex = item.querySelector('.pub-bibtex');
+            const abstract = item.querySelector('.pub-abstract');
+            
+            if (abstract) abstract.classList.remove('show');
+            bibtex.classList.toggle('show');
+            btn.textContent = bibtex.classList.contains('show') ? 'Hide BibTeX' : 'BibTeX';
+        }
+
+        // Multi-Agent Network Animation
+        const canvas = document.getElementById('network-bg');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let agents = [];
+        const numAgents = 30;
+        const connectionDistance = 120;
+        
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        
+        class Agent {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.radius = Math.random() * 2 + 1.5;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(37, 99, 235, 0.5)';
+                ctx.fill();
+            }
+        }
+        
+        function init() {
+            resize();
+            agents = [];
+            for (let i = 0; i < numAgents; i++) {
+                agents.push(new Agent());
+            }
+        }
+        
+        function drawConnections() {
+            for (let i = 0; i < agents.length; i++) {
+                for (let j = i + 1; j < agents.length; j++) {
+                    const dx = agents[i].x - agents[j].x;
+                    const dy = agents[i].y - agents[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < connectionDistance) {
+                        const opacity = (1 - distance / connectionDistance) * 0.25;
+                        ctx.beginPath();
+                        ctx.moveTo(agents[i].x, agents[i].y);
+                        ctx.lineTo(agents[j].x, agents[j].y);
+                        ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            drawConnections();
+            agents.forEach(agent => {
+                agent.update();
+                agent.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        
+        window.addEventListener('resize', resize);
+        init();
+        animate();
+    </script>
+</body>
+</html>
